@@ -44,9 +44,19 @@ function drawStar(context, { color, name, radius, x, y }) {
   drawSpaceObject(context, color, name, radius, x, y);
 }
 
+function drawOrbit(context, x, y, dist) {
+  context.beginPath();
+  context.arc(x, y, dist, 0, Math.PI * 2, true);
+  context.lineWidth = 0.5;
+  context.strokeStyle = "white";
+  context.stroke();
+  context.closePath();
+}
+
 clear(context);
 drawStar(context, sunData);
 
 const planetX = sunPosition.x + earthData.dist * 1;
 const planetY = sunPosition.y + earthData.dist * 0;
 drawSpaceObject(context, earthData.color, earthData.name, earthData.radius, planetX, planetY);
+drawOrbit(context, sunPosition.x, sunPosition.y, earthData.dist);
